@@ -191,6 +191,23 @@ const Explore = () => {
               left={(props) => <List.Icon {...props} icon="link" />}
             />
           </List.Accordion>
+
+          <List.Accordion
+            id="6"
+            title="Animations"
+            description="This template includes an example of an animated component:"
+            left={(props) => <List.Icon {...props} icon="theme-light-dark" />}
+          >
+            <List.Item
+              title="components/HelloWave.tsx"
+              titleStyle={{ fontFamily: 'SpaceMono' }}
+              description="component uses the powerful react-native-reanimated library to create a waving hand animation."
+              descriptionNumberOfLines={3}
+              left={(props) => (
+                <List.Icon {...props} icon="language-typescript" />
+              )}
+            />
+          </List.Accordion>
         </List.AccordionGroup>
       </List.Section>
     </ScrollView>
