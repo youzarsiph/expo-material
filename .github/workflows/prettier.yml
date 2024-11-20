@@ -1,0 +1,39 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# Prettier is an opinionated code formatter.
+# It enforces a consistent style by parsing your code and re-printing it with its own rules
+# that take the maximum line length into account, wrapping code when necessary.
+# More details at https://github.com/prettier/prettier
+# and https://prttier.io
+
+name: Prettier
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: ['main']
+
+jobs:
+  eslint:
+    name: Run prettier checking
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Prettier check
+        run: npx prettier --check .
