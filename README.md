@@ -11,6 +11,11 @@
 
 The `expo-material` template is a robust foundation for developing modern, cross-platform mobile and web applications using the Expo platform. Leveraging Material Design V3, it offers a sleek and intuitive user interface. The template supports both light and dark themes, ensuring a seamless and adaptive experience across various devices and environments.
 
+## Screenshots
+
+![Home screen](assets/screenshots/home.png)
+![Explore screen](assets/screenshots/explore.png)
+
 ## Key Features
 
 - **Expo Framework**: Simplifies the development process with pre-built APIs and tools.
