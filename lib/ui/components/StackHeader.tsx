@@ -1,30 +1,48 @@
 import { getHeaderTitle } from '@react-navigation/elements'
 import { NativeStackHeaderProps } from '@react-navigation/native-stack'
-import { router } from 'expo-router'
 import React from 'react'
-import { Appbar, AppbarProps, Searchbar } from 'react-native-paper'
+import {
+  Appbar,
+  AppbarProps,
+  IconButton,
+  Searchbar,
+  SearchbarProps,
+} from 'react-native-paper'
 
 interface StackHeaderProps extends AppbarProps {
   navProps: NativeStackHeaderProps
   withSearchbar?: boolean
+  searchBarProps?: SearchbarProps
 }
 
-const StackHeader = (props: StackHeaderProps) => (
-  <Appbar.Header {...props}>
-    {props.withSearchbar ? (
+const StackHeader = (props: StackHeaderProps) => {
+  const [query, setQuery] = React.useState('')
+
+  return props.withSearchbar ? (
+    <Appbar.Header {...props}>
       <Searchbar
-        value=""
+        {...props.searchBarProps}
         icon="arrow-left"
-        onPress={() => router.push('/')}
-        placeholder={
-          'Search ' +
-          getHeaderTitle(props.navProps.options, props.navProps.route.name)
-        }
+        value={query}
+        onChangeText={setQuery}
         style={{ margin: 8, marginBottom: 16 }}
         onIconPress={() => props.navProps.navigation.goBack()}
+        right={(p) => (
+          <IconButton
+            {...p}
+            icon="book-search"
+            onPress={() =>
+              props.searchBarProps?.onChangeText
+                ? props.searchBarProps.onChangeText(query)
+                : undefined
+            }
+          />
+        )}
       />
-    ) : (
-      <>
+    </Appbar.Header>
+  ) : (
+    <>
+      <Appbar.Header {...props}>
         {props.navProps.options.headerLeft
           ? props.navProps.options.headerLeft({
               canGoBack: props.navProps.navigation.canGoBack(),
@@ -47,9 +65,9 @@ const StackHeader = (props: StackHeaderProps) => (
               canGoBack: props.navProps.navigation.canGoBack(),
             })
           : undefined}
-      </>
-    )}
-  </Appbar.Header>
-)
+      </Appbar.Header>
+    </>
+  )
+}
 
 export default StackHeader

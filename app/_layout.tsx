@@ -12,7 +12,7 @@ import { useColorScheme } from 'react-native'
 import 'react-native-reanimated'
 
 import { adaptNavigationTheme, PaperProvider } from 'react-native-paper'
-import { AppDarkTheme, AppLightTheme } from '@/ui'
+import { AppDarkTheme, AppLightTheme } from '@/lib'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()

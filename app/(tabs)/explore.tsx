@@ -1,7 +1,7 @@
 import { Platform, ScrollView, useColorScheme, View } from 'react-native'
 import { Icon, List, Text, useTheme } from 'react-native-paper'
 
-import { Colors } from '@/ui'
+import { Colors } from '@/lib'
 
 const Explore = () => {
   const theme = useTheme()

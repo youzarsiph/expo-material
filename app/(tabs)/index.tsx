@@ -1,7 +1,7 @@
 import { Platform, View, ScrollView, useColorScheme } from 'react-native'
 
 import { Icon, Text, useTheme } from 'react-native-paper'
-import { Colors, HelloWave } from '@/ui'
+import { Colors, HelloWave } from '@/lib'
 
 export default function HomeScreen() {
   const theme = useTheme()
