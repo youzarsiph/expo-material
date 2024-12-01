@@ -1,7 +1,8 @@
-import { ScreenStyles } from '@/lib'
 import { router, Stack } from 'expo-router'
 import { View } from 'react-native'
 import { Button, Chip, Text } from 'react-native-paper'
+
+import { ScreenStyles } from '@/lib'
 
 const NotFound = () => (
   <>
