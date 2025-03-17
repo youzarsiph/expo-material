@@ -4,10 +4,8 @@ import React from 'react'
 import {
   Appbar,
   AppbarProps,
-  IconButton,
   Searchbar,
   SearchbarProps,
-  Tooltip,
 } from 'react-native-paper'
 
 interface TabsHeaderProps extends AppbarProps {
@@ -26,19 +24,6 @@ const TabsHeader = (props: TabsHeaderProps) => {
         value={query}
         onChangeText={setQuery}
         style={{ margin: 8, marginBottom: 16 }}
-        right={(p) => (
-          <Tooltip title="Perform search">
-            <IconButton
-              {...p}
-              icon="check"
-              onPress={() =>
-                props.searchBarProps?.onChangeText
-                  ? props.searchBarProps.onChangeText(query)
-                  : undefined
-              }
-            />
-          </Tooltip>
-        )}
       />
     </Appbar.Header>
   ) : (
