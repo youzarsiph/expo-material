@@ -3,7 +3,7 @@ import { Icon, Text, useTheme } from 'react-native-paper'
 
 import { Colors, HelloWave } from '@/lib'
 
-const Home = () => {
+export default function HomeScreen() {
   const theme = useTheme()
   const colorScheme = useColorScheme()
 
@@ -105,5 +105,3 @@ const Home = () => {
     </ScrollView>
   )
 }
-
-export default Home

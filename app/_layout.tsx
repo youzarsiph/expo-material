@@ -3,16 +3,36 @@ import {
   DefaultTheme as NavLightTheme,
   ThemeProvider,
 } from '@react-navigation/native'
+import { useFonts } from 'expo-font'
 import { Stack } from 'expo-router'
+import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'
+import { useEffect } from 'react'
 import { useColorScheme } from 'react-native'
 import { adaptNavigationTheme, PaperProvider } from 'react-native-paper'
 import 'react-native-reanimated'
 
-import { AppDarkTheme, AppLightTheme, StackHeader } from '@/lib'
+import { AppDarkTheme, AppLightTheme } from '@/lib'
 
-const RootLayout = () => {
+// Prevent the splash screen from auto-hiding before asset loading is complete.
+SplashScreen.preventAutoHideAsync()
+
+export default function RootLayout() {
   const colorScheme = useColorScheme()
+  const [loaded] = useFonts({
+    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+  })
+
+  useEffect(() => {
+    if (loaded) {
+      SplashScreen.hideAsync()
+    }
+  }, [loaded])
+
+  if (!loaded) {
+    return null
+  }
+
   const { LightTheme, DarkTheme } = adaptNavigationTheme({
     reactNavigationDark: NavDarkTheme,
     reactNavigationLight: NavLightTheme,
@@ -31,13 +51,7 @@ const RootLayout = () => {
       <PaperProvider
         theme={colorScheme === 'dark' ? AppDarkTheme : AppLightTheme}
       >
-        <Stack
-          screenOptions={{
-            header: (props) => (
-              <StackHeader navProps={props} children={undefined} />
-            ),
-          }}
-        >
+        <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
         </Stack>
@@ -47,5 +61,3 @@ const RootLayout = () => {
     </ThemeProvider>
   )
 }
-
-export default RootLayout
